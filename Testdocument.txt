@@ -1,4 +1,5 @@
 Testdocument om GIT trigger te testen
 Tweede poging nu met ngrok.
 Poging drie, hopelijk nu ook Jenkins goed ingesteld.
-Poging 4 dan, nu met webhook in de url in jenkins
+Poging 4 dan, nu met webhook in de url in jenkins.
+Poging 5 dan, met aangepaste url in github, met /github-webhook/
