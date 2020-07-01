@@ -1,0 +1,63 @@
+properties([pipelineTriggers([githubPush()])])
+
+node{
+	ws("/var/opt/jenkins/workspace/${env.JOB_NAME}_${BUILD_NUMBER}"){ 
+		withEnv(
+			["build_ok=true",
+			"gefaalde_cases='Dit zijn de gefaalde testcases :'",
+			"credential_id=matthijs_git",
+			"stap1=files",
+			"stap2=website",
+			"stap3=selenium"
+			"workspace=/var/opt/jenkins/workspace/${env.JOB_NAME}_${BUILD_NUMBER}",
+			"archive=/var/opt/jenkins/workspace",
+			"id='een code'",
+			"antwoord=1"]) {
+			try{
+				stage('Git pull') {
+					checkout([
+						$class: 'GitSCM',
+						branches: [[name: '*/master']],
+						doGenerateSubmoduleConfigurations: false,
+						extensions: [],
+						submoduleCfg: [],
+						userRemoteConfigs:
+						[[
+							credentialsId: 'matthijs_git',
+							url: 'https://github.com/SYSQA-ExpertiseLeadership/versiebeheer'
+						]]
+					])
+				}
+			}
+			catch(e){
+				build_ok = false
+				echo e.toString()
+			}
+			try{
+				stage(stap1){
+					sh "cp /var/opt/jenkins/workspace/${env.JOB_NAME}_${BUILD_NUMBER}/docker-spul/website/* /var/jenkins_home/test/test-website/"
+				}
+			}
+			catch(e){
+				build_ok = false
+				echo e.toString()
+			}
+			try{
+				stage(stap2) {
+					sh 'docker-compose -f /var/jenkins_home/test/test-website/Docker-compose-combi.yml up --build -d'
+				}
+			}
+			finally{
+				dir("${archive}"){
+					archiveArtifacts allowEmptyArchive: true, artifacts: '**'
+				}
+				if (build_ok){
+					currentBuild.result = "SUCCESS"
+				}
+				else {
+					currentBuild.result = "FAILURE"
+				}
+			}
+		}
+	}
+}

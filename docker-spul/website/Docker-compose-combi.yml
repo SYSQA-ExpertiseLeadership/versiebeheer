@@ -1,0 +1,9 @@
+version: "3"
+services:
+  website-nginx:
+    build:
+      context: /var/jenkins_home/test/test-website
+      dockerfile: Dockerfile-nginx
+    image: test-website-cicd-training
+    ports: 
+      - "80:80"

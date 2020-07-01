@@ -1,0 +1,13 @@
+FROM centos:7
+
+LABEL MAINTAINER="Matthijs Risselada"
+
+USER root
+
+RUN mkdir /var/opt/matthijs
+
+RUN echo "Dit is een testfile om aan te tonen dat een container in een container kan werken" > /var/opt/matthijs/POC.txt
+
+RUN ls /var/opt/matthijs
+
+RUN lsb_release -a
