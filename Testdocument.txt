@@ -5,3 +5,4 @@ Poging 4 dan, nu met webhook in de url in jenkins.
 Poging 5 dan, met aangepaste url in github, met /github-webhook/
 Poging, veel, meer veranderingen. Zoek het maar uit.
 Gaat het dan nu wel goed?
+Eens zien of het nog werkt en of de website automatisch deployed wordt
