@@ -35,9 +35,9 @@ node{
 			}
 			try{
 				stage(stap1){
-					sh 'mkdir /var/opt/test/website'
+					sh 'mkdir -p /var/opt/test/website'
 					sh "cp /var/opt/jenkins/workspace/${env.JOB_NAME}_${BUILD_NUMBER}/docker-spul/website/* /var/opt/test/website/"
-					sh 'mkdir /var/opt/test/selenium'
+					sh 'mkdir -p /var/opt/test/selenium'
 					sh "cp /var/opt/jenkins/workspace/${env.JOB_NAME}_${BUILD_NUMBER}/docker-spul/selenium/* /var/opt/test/selenium/"
 				}
 			}
@@ -49,6 +49,10 @@ node{
 				stage(stap2) {
 					sh 'docker-compose -f /var/opt/test/website/Docker-compose-combi.yml up --build -d'
 				}
+			}
+			catch(e){
+				build_ok = false
+				echo e.toString()
 			}
 			finally{
 				dir("${archive}"){
