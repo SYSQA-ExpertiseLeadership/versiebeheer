@@ -18,6 +18,8 @@ RUN pip3 install --upgrade pip && pip3 install selenium
 
 WORKDIR /var/opt/test/selenium
 
+COPY test-website.py /var/opt/test/selenium
+
 RUN ls /var/opt/test/selenium
 
 ENTRYPOINT ["python38", "/var/opt/test/selenium/test-website.py"]
