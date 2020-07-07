@@ -13,5 +13,6 @@ services:
       context: /var/opt/test/selenium/
       dockerfile: Dockerfile
     image: selenium-test-cicd-training
-    volumes: /var/opt/test/selenium:/var/opt/test/selenium
+    volumes: 
+      - /var/opt/test/selenium:/var/opt/test/selenium
      
