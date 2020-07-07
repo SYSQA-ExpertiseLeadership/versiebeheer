@@ -20,8 +20,6 @@ WORKDIR /var/opt/test/selenium
 
 COPY test-website.py /var/opt/test/selenium
 
-RUN ls -alrt /var/opt/test/selenium
-
-RUN echo $PATH
+RUN ls /usr/local/bin
 
 ENTRYPOINT ["python38", "/var/opt/test/selenium/test-website.py"]
