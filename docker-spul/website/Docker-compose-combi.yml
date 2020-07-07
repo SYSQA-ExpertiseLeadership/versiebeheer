@@ -2,8 +2,15 @@ version: "3"
 services:
   website-nginx:
     build:
-      context: /var/jenkins_home/test/test-website
+      context: /var/opt/test/website/
       dockerfile: Dockerfile-nginx
     image: test-website-cicd-training
     ports: 
       - "80:80"
+      
+  selenium:
+    build:
+      context: /var/opt/test/selenium/
+      dockerfile: Dockerfile
+    image: selenium-test-cicd-training
+     

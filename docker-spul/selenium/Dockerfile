@@ -1,8 +1,8 @@
-FROM centos:7
+FROM centos:8
 
 LABEL MAINTAINER="Matthijs Risselada"
 
-RUN rpm -Uhv https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm 
+RUN rpm -Uhv https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm 
 
 RUN yum install -y python36-setuptools && easy_install-3.6 pip
 
@@ -18,6 +18,4 @@ RUN mkdir /var/ini /var/logs
 
 WORKDIR /var/dumps
 
-RUN wget -q "https://raw.githubusercontent.com/kennisgroep-testautomatisering/IVS_90/master/currencyConverter.py" -O /var/dumps/currencyConverter.py
-
-ENTRYPOINT ["python36", "/var/dumps/currencyConverter.py"]
+CMD ["/bin/bash"]
