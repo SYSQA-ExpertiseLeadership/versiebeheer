@@ -10,7 +10,9 @@ RUN wget -q "https://ftp.mozilla.org/pub/firefox/releases/78.0.1/linux-x86_64/en
 
 RUN mkdir /var/opt/test /var/opt/test/selenium /var/opt/test/selenium/logs
 
-RUN pip3 install --upgrade pip && pip3 install selenium
+RUN /usr/bin/python3 --version
+
+RUN pip3 install selenium
 
 WORKDIR /var/opt/test/selenium
 
