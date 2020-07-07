@@ -9,7 +9,7 @@ node{
 			"stap1=files",
 			"stap2=website",
 			"stap3=selenium",
-			"workspace=/var/opt/jenkins/workspace/Test_pipeline_2/${env.JOB_NAME}_${BUILD_NUMBER}",
+			"workspace=/var/opt/jenkins/workspace/${env.JOB_NAME}_${BUILD_NUMBER}",
 			"archive=/var/opt/jenkins/workspace",
 			"id='een code'",
 			"antwoord=1"]) {
@@ -36,9 +36,9 @@ node{
 			try{
 				stage(stap1){
 					sh 'mkdir /var/opt/test/website'
-					sh "cp /var/opt/jenkins/workspace/Test_pipeline_2/${env.JOB_NAME}_${BUILD_NUMBER}/docker-spul/website/* /var/opt/test/website/"
+					sh "cp /var/opt/jenkins/workspace/${env.JOB_NAME}_${BUILD_NUMBER}/docker-spul/website/* /var/opt/test/website/"
 					sh 'mkdir /var/opt/test/selenium'
-					sh "cp /var/opt/jenkins/workspace/Test_pipeline_2/${env.JOB_NAME}_${BUILD_NUMBER}/docker-spul/selenium/* /var/opt/test/selenium/"
+					sh "cp /var/opt/jenkins/workspace/${env.JOB_NAME}_${BUILD_NUMBER}/docker-spul/selenium/* /var/opt/test/selenium/"
 				}
 			}
 			catch(e){
