@@ -12,12 +12,12 @@ class WebsiteTest(unittest.TestCase):
     def setUp(self):
         format = "%Y%m%d%H%M"
         date = datetime.datetime.now()
-        logging.basicConfig(level=logging.INFO, filename = 'c:\\Logging\\test-website-'+date.strftime(format)+'.log')
+        logging.basicConfig(level=logging.INFO, filename = '/var/opt/test/selenium/logs/test-website-'+date.strftime(format)+'.log')
         logging.info("Setting up Driver")
         WAIT = 30
         os.environ['MOZ_HEADLESS'] = '1'
-        binary = FirefoxBinary('C:\\Program Files\\Mozilla Firefox\\firefox.exe')
-        #binary = FirefoxBinary('/usr/local/firefox/firefox')
+        #binary = FirefoxBinary('C:\\Program Files\\Mozilla Firefox\\firefox.exe')
+        binary = FirefoxBinary('/usr/local/firefox/firefox')
         self.driver = webdriver.Firefox(firefox_binary=binary)
         
         logging.info("Setting Driver Settings")
