@@ -16,6 +16,8 @@ RUN mkdir /var/opt/test /var/opt/test/selenium /var/opt/test/selenium/logs
 
 RUN pip3 install --upgrade pip && pip3 install selenium
 
-WORKDIR /var/dumps
+WORKDIR /var/opt/test/selenium
+
+RUN ls /var/opt/test/selenium
 
 ENTRYPOINT ["python38", "/var/opt/test/selenium/test-website.py"]
