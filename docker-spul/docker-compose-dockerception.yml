@@ -1,9 +1,0 @@
-version: "3.8"
-services:
-  jenkins:
-    build:
-      context: .
-      dockerfile: Dockerfile_containerception
-    image: test-image-dockerception
-    volumes:
-      - /var/opt:/var/opt
