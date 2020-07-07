@@ -8,7 +8,7 @@ services:
     ports: 
       - "80:80"
       
-  selenium:
+  selenium-test:
     build:
       context: /var/opt/test/selenium/
       dockerfile: Dockerfile

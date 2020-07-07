@@ -48,6 +48,7 @@ node{
 			try{
 				stage(stap2) {
 					sh 'mkdir -p /var/opt/test/selenium/logs'
+					sh 'chmod -R 777 /var/opt/test/selenium'
 					sh 'docker-compose -f /var/opt/test/website/Docker-compose-combi.yml up --build -d'
 				}
 			}
