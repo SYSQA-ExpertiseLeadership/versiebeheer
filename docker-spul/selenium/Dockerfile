@@ -2,6 +2,12 @@ FROM centos:8
 
 LABEL MAINTAINER="Matthijs Risselada"
 
+RUN dnf install python3
+
+RUN python3 --version
+
+RUN pip3 install selenium
+
 RUN yum install -y wget libXt gtk3 centos-indexhtml hunspell gtk2 liberation-fonts-common hunspell-en-US mozilla-filesystem xcb-util startup-notification liberation-sans-fonts wget bzip2 && yum clean all && rm -rf /var/cache/yum /usr/{games,src,tmp}
 
 RUN wget -q "https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz" -O /usr/bin/geckodriver.tgz && tar xvzf /usr/bin/geckodriver.tgz -C /usr/bin && rm -f /usr/bin/geckodriver.tgz
@@ -14,4 +20,4 @@ WORKDIR /var/opt/test/selenium
 
 COPY test-website.py /var/opt/test/selenium
 
-ENTRYPOINT [“bin/bash”,”tail -f /dev/null”]
+ENTRYPOINT ["python36", "/var/opt/test/selenium/test-website.py"]
