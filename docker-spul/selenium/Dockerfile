@@ -20,4 +20,4 @@ WORKDIR /var/opt/test/selenium
 
 COPY test-website.py /var/opt/test/selenium
 
-ENTRYPOINT ["python36", "/var/opt/test/selenium/test-website.py"]
+ENTRYPOINT ["python3", "/var/opt/test/selenium/test-website.py"]
