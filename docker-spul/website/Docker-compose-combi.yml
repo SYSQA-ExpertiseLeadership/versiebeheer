@@ -15,4 +15,5 @@ services:
     image: selenium-test-cicd-training
     volumes: 
       - /var/opt/test/selenium:/var/opt/test/selenium
+      - /var/opt/test/selenium/logs:/var/opt/test/selenium/logs
      
