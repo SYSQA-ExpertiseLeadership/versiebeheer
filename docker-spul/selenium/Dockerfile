@@ -14,4 +14,4 @@ WORKDIR /var/opt/test/selenium
 
 COPY test-website.py /var/opt/test/selenium
 
-CMD tail -f /dev/null
+ENTRYPOINT [“bin/bash”,”tail -f /dev/null”]
