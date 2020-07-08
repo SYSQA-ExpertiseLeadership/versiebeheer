@@ -18,6 +18,8 @@ WORKDIR /var/opt/test/selenium
 
 RUN wget -q "https://raw.githubusercontent.com/SYSQA-ExpertiseLeadership/versiebeheer/master/docker-spul/selenium/test-website.py" -O /var/opt/test/selenium/test-website.py
 
+RUN chmod -R 777 /var/opt/test/selenium
+
 RUN ls -alrt /var/opt/test/selenium
 
 CMD ["python3", "/var/opt/test/selenium/test-website.py"]
