@@ -63,7 +63,7 @@ node{
 			try{
 				stage(stap3) {
 					sh 'mkdir -p /var/opt/test/selenium/logs'
-					sh 'chmod -R 777 /var/opt/test/selenium'
+					//sh 'chmod -R 777 /var/opt/test/selenium'
 					sh "naam=${stap3} nummer=${BUILD_NUMBER} docker-compose -p '${stap3}_${BUILD_NUMBER}' -f /var/opt/test/selenium/Docker-compose-selenium.yml up --build"
 					antwoord = sh (script: "docker ps -aqf 'name=${stap3}_${BUILD_NUMBER}_selenium-test_1' | xargs --no-run-if-empty docker inspect --format='{{.State.ExitCode}}'", returnStdout: true)
 					if (! antwoord.trim().equals("0")){
