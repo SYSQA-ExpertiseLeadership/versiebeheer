@@ -2,7 +2,7 @@ FROM centos:8
 
 LABEL MAINTAINER="Matthijs Risselada"
 
-RUN dnf install python3
+RUN dnf install -y python3
 
 RUN python3 --version
 
