@@ -10,12 +10,8 @@ RUN wget -q "https://ftp.mozilla.org/pub/firefox/releases/78.0.1/linux-x86_64/en
 
 RUN mkdir /var/opt/test /var/opt/test/selenium /var/opt/test/selenium/logs
 
-RUN /usr/bin/python3 --version
-
-RUN pip3 install selenium
-
 WORKDIR /var/opt/test/selenium
 
 COPY test-website.py /var/opt/test/selenium
 
-ENTRYPOINT ["python36", "/var/opt/test/selenium/test-website.py"]
+CMD tail -f /dev/null
