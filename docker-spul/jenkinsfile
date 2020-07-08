@@ -47,9 +47,26 @@ node{
 			}
 			try{
 				stage(stap2) {
+					sh "naam=${stap2} nummer=${BUILD_NUMBER} docker-compose -p '${stap2}_${BUILD_NUMBER}' -f /var/opt/test/website/Docker-compose-combi.yml up --build -d"
+					antwoord = sh (script: "docker ps -aqf 'name=${stap2}_${BUILD_NUMBER}_website-nginx_1' | xargs --no-run-if-empty docker inspect --format='{{.State.ExitCode}}'", returnStdout: true)
+					if (! antwoord.trim().equals("0")){
+                        sh "exit 1"
+					} 
+				}
+			}
+			catch(e){
+				build_ok = false
+				echo e.toString()
+			}
+			try{
+				stage(stap3) {
 					sh 'mkdir -p /var/opt/test/selenium/logs'
 					sh 'chmod -R 777 /var/opt/test/selenium'
-					sh 'docker-compose -f /var/opt/test/website/Docker-compose-combi.yml up --build -d'
+					sh "naam=${stap3} nummer=${BUILD_NUMBER} docker-compose -p '${stap3}_${BUILD_NUMBER}' -f /var/opt/test/selenium/Docker-compose-selenium.yml up --build"
+					antwoord = sh (script: "docker ps -aqf 'name=${stap3}_${BUILD_NUMBER}_selenium-test_1' | xargs --no-run-if-empty docker inspect --format='{{.State.ExitCode}}'", returnStdout: true)
+					if (! antwoord.trim().equals("0")){
+                        sh "exit 1"
+					}
 				}
 			}
 			catch(e){
