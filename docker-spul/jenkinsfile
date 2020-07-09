@@ -40,7 +40,7 @@ node{
 					sh 'mkdir -p /var/opt/test/selenium'
 					sh 'mkdir -p /var/opt/test/selenium/logs'
 					sh 'chmod -R 777 /var/opt/test/selenium'
-					sh "cp /var/opt/jenkins/workspace/${env.JOB_NAME}_${BUILD_NUMBER}/docker-spul/selenium/* /var/opt/test/selenium/"
+					//sh "cp /var/opt/jenkins/workspace/${env.JOB_NAME}_${BUILD_NUMBER}/docker-spul/selenium/* /var/opt/test/selenium/"
 				}
 			}
 			catch(e){
@@ -49,33 +49,25 @@ node{
 			}
 			try{
 				stage(stap2) {
-					sh "docker-compose -f /var/opt/test/website/Docker-compose-combi.yml up --build -d"
+					sh "docker-compose -f /var/opt/test/website/Docker-compose-combi.yml up --build -d website-nginx"
 					/*
 					antwoord = sh (script: "docker ps -aqf 'name=${stap2}_${BUILD_NUMBER}_website-nginx_1' | xargs --no-run-if-empty docker inspect --format='{{.State.ExitCode}}'", returnStdout: true)
 					if (! antwoord.trim().equals("0")){
                         sh "exit 1"
 					}
 					*/
-					antwoord = sh (script: "docker ps -aqf name=website_selenium-test_1 | xargs --no-run-if-empty docker inspect --format='{{.State.ExitCode}}'", returnStdout: true)
-					if (! antwoord.trim().equals("0")){
-						sh "Houston we have a problem"
-                        sh "exit 1"
-					}
-					sh "echo $antwoord"
+					
 				}
 			}
 			catch(e){
 				build_ok = false
 				echo e.toString()
 			}
-			/*
 			try{
 				stage(stap3) {
-					sh 'mkdir -p /var/opt/test/selenium/logs'
-					//sh 'chmod -R 777 /var/opt/test/selenium'
-					sh "naam=${stap3} nummer=${BUILD_NUMBER} docker-compose -p '${stap3}_${BUILD_NUMBER}' -f /var/opt/test/selenium/Docker-compose-selenium.yml up --build"
+					sh "naam=${stap3} nummer=${BUILD_NUMBER} docker-compose -p '${stap3}_${BUILD_NUMBER}' -f /var/opt/test/selenium/Docker-compose-selenium.yml up --build selenium-test"
 					antwoord = sh (script: "docker ps -aqf 'name=${stap3}_${BUILD_NUMBER}_selenium-test_1' | xargs --no-run-if-empty docker inspect --format='{{.State.ExitCode}}'", returnStdout: true)
-					if (! antwoord.trim().equals("0")){
+					if (!antwoord.trim().equals("0")){
                         sh "exit 1"
 					}
 				}
@@ -84,7 +76,6 @@ node{
 				build_ok = false
 				echo e.toString()
 			}
-			*/
 			finally{
 				//sh 'docker system prune -f'
 				//sh 'docker images test-website-cicd-training -q | xargs --no-run-if-empty docker rmi -f'
