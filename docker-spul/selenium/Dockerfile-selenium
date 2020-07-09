@@ -28,7 +28,8 @@ RUN ls /usr/local/sbin
 RUN ls /usr/local/bin
 RUN ls /usr/sbin
 RUN ls /usr/bin
-RUN ls /sbin:/bin
+RUN ls /sbin
+RUN ls /bin
 
 RUN echo $PATH
 
