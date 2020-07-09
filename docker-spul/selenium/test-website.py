@@ -5,7 +5,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+from selenium.webdriver.chrome.options import Options
+#from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 
 class WebsiteTest(unittest.TestCase):
@@ -15,10 +16,19 @@ class WebsiteTest(unittest.TestCase):
         logging.basicConfig(level=logging.INFO, filename = '/var/opt/test/selenium/logs/test-website-'+date.strftime(format)+'.log')
         logging.info("Setting up Driver")
         WAIT = 30
-        os.environ['MOZ_HEADLESS'] = '1'
+        #os.environ['MOZ_HEADLESS'] = '1'
         #binary = FirefoxBinary('C:\\Program Files\\Mozilla Firefox\\firefox.exe')
-        binary = FirefoxBinary('/usr/local/firefox/firefox')
-        self.driver = webdriver.Firefox(firefox_binary=binary)
+        #binary = FirefoxBinary('/usr/local/firefox/firefox')
+        #self.driver = webdriver.Firefox(firefox_binary=binary)
+        chromeOptions = Options()
+        chromeOptions.add_argument("--headless")
+        chromeOptions.add_argument('--no-sandbox')
+        chromeOptions.add_argument("--window-size=1920,1080")
+        chromeOptions.add_argument('--disable-dev-shm-usage')
+
+        #self.driver = webdriver.Chrome(r"C:/Selenium_Jar_MR/anders/chromedriver.exe",chrome_options=chromeOptions)
+        #self.driver = webdriver.Chrome(chrome_options=chromeOptions)
+        self.driver = webdriver.Chrome(options=chromeOptions)
         
         logging.info("Setting Driver Settings")
         self.driver.implicitly_wait(WAIT)
