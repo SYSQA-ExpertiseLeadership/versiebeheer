@@ -24,7 +24,7 @@ RUN ls -alrt /var/opt/test/selenium
 
 RUN python3 --version
 
-RUN echo which python3
+RUN which python
 
 RUN echo $PATH
 
