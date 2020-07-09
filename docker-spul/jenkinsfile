@@ -38,6 +38,8 @@ node{
 					sh 'mkdir -p /var/opt/test/website'
 					sh "cp /var/opt/jenkins/workspace/${env.JOB_NAME}_${BUILD_NUMBER}/docker-spul/website/* /var/opt/test/website/"
 					sh 'mkdir -p /var/opt/test/selenium'
+					sh 'mkdir -p /var/opt/test/selenium/logs'
+					sh 'chmod -R 777 /var/opt/test/selenium'
 					sh "cp /var/opt/jenkins/workspace/${env.JOB_NAME}_${BUILD_NUMBER}/docker-spul/selenium/* /var/opt/test/selenium/"
 				}
 			}
@@ -82,10 +84,10 @@ node{
 			}
 			*/
 			finally{
-				sh 'docker system prune -f'
+				//sh 'docker system prune -f'
 				//sh 'docker images test-website-cicd-training -q | xargs --no-run-if-empty docker rmi -f'
-				sh 'docker ps -aqf name=website_selenium-test_1 | xargs --no-run-if-empty docker rm -f'
-				sh 'docker images selenium-test-cicd-training -q | xargs --no-run-if-empty docker rmi -f'
+				//sh 'docker ps -aqf name=website_selenium-test_1 | xargs --no-run-if-empty docker rm -f'
+				//sh 'docker images selenium-test-cicd-training -q | xargs --no-run-if-empty docker rmi -f'
 				dir("${archive}"){
 					archiveArtifacts allowEmptyArchive: true, artifacts: '**'
 				}
