@@ -54,6 +54,10 @@ node{
                         sh "exit 1"
 					}
 					*/
+					antwoord = sh (script: "docker ps -aqf 'name=website_selenium-test_1' | xargs --no-run-if-empty docker inspect --format='{{.State.ExitCode}}'", returnStdout: true)
+					if (! antwoord.trim().equals("0")){
+                        sh "exit 1"
+					}
 				}
 			}
 			catch(e){
