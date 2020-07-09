@@ -27,7 +27,8 @@ RUN python3 --version
 RUN ls /usr/local/sbin
 RUN ls /usr/local/bin
 RUN ls /usr/sbin
-RUN ls /usr/bin:/sbin:/bin
+RUN ls /usr/bin
+RUN ls /sbin:/bin
 
 RUN echo $PATH
 
@@ -36,5 +37,7 @@ RUN yum install -y which
 RUN which python
 RUN which python3
 RUN which python3.6
+
+RUN cd /var/opt/test/selenium/
 
 CMD ["python3", "/var/opt/test/selenium/test-website.py"]
