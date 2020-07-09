@@ -22,4 +22,10 @@ RUN chmod -R 777 /var/opt/test/selenium
 
 RUN ls -alrt /var/opt/test/selenium
 
+RUN python3 --version
+
+RUN which python3
+
+RUN echo $PATH
+
 CMD ["python3", "/var/opt/test/selenium/test-website.py"]
