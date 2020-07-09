@@ -66,6 +66,7 @@ node{
 			try{
 				stage(stap3) {
 					sh "naam=${stap3} nummer=${BUILD_NUMBER} docker-compose -p '${stap3}_${BUILD_NUMBER}' -f /var/opt/test/selenium/Docker-compose-selenium.yml up --build selenium-test"
+					sh 'docker ps -aqf name=website_selenium-test_1 | xargs --no-run-if-empty docker cp :/var/opt/test/selenium/logs /var/opt/test/selenium/logs'
 					antwoord = sh (script: "docker ps -aqf 'name=${stap3}_${BUILD_NUMBER}_selenium-test_1' | xargs --no-run-if-empty docker inspect --format='{{.State.ExitCode}}'", returnStdout: true)
 					if (!antwoord.trim().equals("0")){
                         sh "exit 1"
