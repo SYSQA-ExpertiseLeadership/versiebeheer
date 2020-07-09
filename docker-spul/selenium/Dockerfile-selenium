@@ -22,16 +22,8 @@ RUN wget -q "https://raw.githubusercontent.com/SYSQA-ExpertiseLeadership/versieb
 
 RUN chmod -R 777 /var/opt/test/selenium
 
-RUN ls -alrt /var/opt/test/selenium
-
-RUN python3 --version
-
-RUN echo $PATH
-
 RUN cd /var/opt/test/selenium/
 
 RUN ls -alrt
-
-RUN python36 --version
 
 CMD ["python3", "/var/opt/test/selenium/test-website.py"]
