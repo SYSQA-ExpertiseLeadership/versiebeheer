@@ -60,6 +60,7 @@ node{
 				build_ok = false
 				echo e.toString()
 			}
+			/*
 			try{
 				stage(stap3) {
 					sh 'mkdir -p /var/opt/test/selenium/logs'
@@ -75,6 +76,7 @@ node{
 				build_ok = false
 				echo e.toString()
 			}
+			*/
 			finally{
 				sh 'docker system prune -f'
 				//sh 'docker images test-website-cicd-training -q | xargs --no-run-if-empty docker rmi -f'

@@ -7,3 +7,10 @@ services:
     image: test-website-cicd-training
     ports: 
       - "80:80"
+  selenium-test:
+    build:
+      context: /var/opt/test/selenium/
+      dockerfile: Dockerfile-selenium
+    image: selenium-test-cicd-training
+    volumes: 
+      - /var/opt/test/selenium/logs:/var/opt/test/selenium/logs
