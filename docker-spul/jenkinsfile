@@ -40,7 +40,7 @@ node{
 					sh 'mkdir -p /var/opt/test/selenium'
 					//sh 'mkdir -p /var/opt/test/selenium/logs'
 					sh 'chmod -R 777 /var/opt/test/selenium'
-					//sh "cp /var/opt/jenkins/workspace/${env.JOB_NAME}_${BUILD_NUMBER}/docker-spul/selenium/* /var/opt/test/selenium/"
+					sh "cp /var/opt/jenkins/workspace/${env.JOB_NAME}_${BUILD_NUMBER}/docker-spul/selenium/* /var/opt/test/selenium/"
 				}
 			}
 			catch(e){

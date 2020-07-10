@@ -12,4 +12,4 @@ services:
 networks:
   default:
     external:
-      name:my_first_network
+      name: my_first_network
