@@ -5,6 +5,9 @@ services:
       context: /var/opt/test/selenium/
       dockerfile: Dockerfile-selenium
     image: selenium-test-cicd-training
+    networks:
+      - networks:
+      - my_first_network
       
   networks:
     default:
