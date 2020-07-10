@@ -9,6 +9,7 @@ node{
 			"stap1=files",
 			"stap2=website",
 			"stap3=selenium",
+			"container_id=a2b3",
 			"workspace=/var/opt/jenkins/workspace/${env.JOB_NAME}_${BUILD_NUMBER}",
 			"archive=/var/opt/jenkins/workspace",
 			"id='een code'",
