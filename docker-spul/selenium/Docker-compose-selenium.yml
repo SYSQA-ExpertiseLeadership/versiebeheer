@@ -10,5 +10,5 @@ services:
       dockerfile: Dockerfile-selenium
     image: selenium-test-cicd-training
     networks:
-      - my_first_network
+      - website_my_first_network
       
