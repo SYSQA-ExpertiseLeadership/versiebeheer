@@ -1,8 +1,7 @@
 version: "3.8"
 networks:
-  default:
-    external:
-      name: my_first_network
+  my_first_network:
+    external: true
       
 services:
   selenium:
@@ -11,6 +10,5 @@ services:
       dockerfile: Dockerfile-selenium
     image: selenium-test-cicd-training
     networks:
-      - networks:
       - my_first_network
       
