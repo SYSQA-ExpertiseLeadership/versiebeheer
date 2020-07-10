@@ -1,6 +1,6 @@
 version: "3.8"
 networks:
-  my_first_network:
+  website_my_first_network:
     external: true
       
 services:
