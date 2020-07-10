@@ -39,7 +39,7 @@ class WebsiteTest(unittest.TestCase):
         logging.info("Starting PoC")
         driver, wait = self.driver, self.wait
         logging.info("Going to Test website")
-        link = "http://website:80"
+        link = "http://my_first_network:80"
         driver.get(link)
         
         elem = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'p')))

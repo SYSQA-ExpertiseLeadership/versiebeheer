@@ -6,8 +6,9 @@ services:
       dockerfile: Dockerfile-selenium
     image: selenium-test-cicd-training
     networks: 
-      - website_proxy
+      - my-proxy-net
       
   networks:
-    website_proxy:
-      external: true
+    my-proxy-net:
+      external:
+        name:my_first_network
