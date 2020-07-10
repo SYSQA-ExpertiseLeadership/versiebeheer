@@ -43,7 +43,7 @@ class WebsiteTest(unittest.TestCase):
         driver.get(link)
         
         elem = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'p')))
-        if str(elem.text) != "Dit is een simpele statische website.":
+        if str(elem.text) != "Dit niet is een simpele statische website.":
             logging.error("De tekst op de website komt niet overeen met de verwachte tekst")
             raise Exception('De tekst op de website komt niet overeen met de verwachte tekst')
     
