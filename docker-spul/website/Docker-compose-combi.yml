@@ -1,4 +1,9 @@
 version: "3.8"
+networks:
+  default:
+    external:
+      name: my_first_network
+
 services:
   website:
     build:
@@ -9,8 +14,3 @@ services:
       - "80:80"
     networks:
       - my_first_network
-      
-networks:
-  default:
-    external:
-      name: my_first_network
