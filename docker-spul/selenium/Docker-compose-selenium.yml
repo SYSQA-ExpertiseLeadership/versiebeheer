@@ -9,7 +9,7 @@ services:
       - networks:
       - my_first_network
       
-  networks:
-    default:
-      external:
-        name:my_first_network
+networks:
+  default:
+    external:
+      name:my_first_network
