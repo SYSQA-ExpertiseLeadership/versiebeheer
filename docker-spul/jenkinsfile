@@ -63,7 +63,7 @@ node{
 					//sh 'docker ps -aqf name=${stap3}_${BUILD_NUMBER}_selenium_1 | xargs --no-run-if-empty docker cp :/var/opt/test/selenium/logs /var/opt/test/selenium'
 					container_id = sh (script: 'docker ps -aqf name=${stap3}_${BUILD_NUMBER}_selenium_1', returnStdout: true)
 					echo container_id
-					sh 'docker cp ${container_id}:/var/opt/test/selenium/logs /var/opt/test/selenium'
+					sh "docker cp ${container_id}:/var/opt/test/selenium/logs /var/opt/test/selenium"
 					/*
 					antwoord = sh (script: "docker ps -aqf ${stap3}_${BUILD_NUMBER}_selenium-test_1' | xargs --no-run-if-empty docker inspect --format='{{.State.ExitCode}}'", returnStdout: true)
 					if (!antwoord.trim().equals("0")){
