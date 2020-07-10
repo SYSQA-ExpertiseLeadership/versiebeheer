@@ -1,11 +1,13 @@
 version: "3"
 services:
-  selenium-test:
+  selenium:
     build:
       context: /var/opt/test/selenium/
       dockerfile: Dockerfile-selenium
     image: selenium-test-cicd-training
-    volumes: 
-      - /var/opt/test/selenium/logs:/var/opt/test/selenium/logs
-    
-   
+    networks: 
+      - website_proxy
+      
+  networks:
+    website_proxy:
+      external: true
