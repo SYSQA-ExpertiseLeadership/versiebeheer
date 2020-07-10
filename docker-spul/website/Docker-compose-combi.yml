@@ -7,9 +7,8 @@ services:
     image: website-image
     ports: 
       - "80:80"
-    networks: 
-      - proxy
       
   networks:
-    proxy:
-      name:my_first_network
+    default:
+      external:
+        name:my_first_network
