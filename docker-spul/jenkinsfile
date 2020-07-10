@@ -50,13 +50,6 @@ node{
 			try{
 				stage(stap2) {
 					sh "docker-compose -f /var/opt/test/website/Docker-compose-combi.yml up --build -d website"
-					/*
-					antwoord = sh (script: "docker ps -aqf 'name=${stap2}_${BUILD_NUMBER}_website-nginx_1' | xargs --no-run-if-empty docker inspect --format='{{.State.ExitCode}}'", returnStdout: true)
-					if (! antwoord.trim().equals("0")){
-                        sh "exit 1"
-					}
-					*/
-					
 				}
 			}
 			catch(e){
@@ -67,11 +60,13 @@ node{
 				stage(stap3) {
 					sh "naam=${stap3} nummer=${BUILD_NUMBER} docker-compose -p '${stap3}_${BUILD_NUMBER}' -f /var/opt/test/selenium/Docker-compose-selenium.yml up --build selenium"
 					sh 'ls /var/opt/test/selenium'
-					sh 'docker ps -aqf name=website_selenium-test_1 | xargs --no-run-if-empty docker cp :/var/opt/test/selenium/logs /var/opt/test/selenium'
-					antwoord = sh (script: "docker ps -aqf 'name=${stap3}_${BUILD_NUMBER}_selenium-test_1' | xargs --no-run-if-empty docker inspect --format='{{.State.ExitCode}}'", returnStdout: true)
+					sh "docker ps -aqf name=${stap3}_${BUILD_NUMBER}_selenium_1 | xargs --no-run-if-empty docker cp :/var/opt/test/selenium/logs /var/opt/test/selenium"
+					/*
+					antwoord = sh (script: "docker ps -aqf ${stap3}_${BUILD_NUMBER}_selenium-test_1' | xargs --no-run-if-empty docker inspect --format='{{.State.ExitCode}}'", returnStdout: true)
 					if (!antwoord.trim().equals("0")){
                         sh "exit 1"
 					}
+					*/
 				}
 			}
 			catch(e){
@@ -79,10 +74,10 @@ node{
 				echo e.toString()
 			}
 			finally{
-				//sh 'docker system prune -f'
-				//sh 'docker images test-website-cicd-training -q | xargs --no-run-if-empty docker rmi -f'
-				//sh 'docker ps -aqf name=website_selenium-test_1 | xargs --no-run-if-empty docker rm -f'
-				//sh 'docker images selenium-test-cicd-training -q | xargs --no-run-if-empty docker rmi -f'
+				sh 'docker system prune -f'
+				sh 'docker images test-website-cicd-training -q | xargs --no-run-if-empty docker rmi -f'
+				sh "docker ps -aqf name=${stap3}_${BUILD_NUMBER}_selenium_1 | xargs --no-run-if-empty docker rm -f"
+				sh 'docker images selenium-test-cicd-training -q | xargs --no-run-if-empty docker rmi -f'
 				dir("${archive}"){
 					archiveArtifacts allowEmptyArchive: true, artifacts: '**'
 				}
