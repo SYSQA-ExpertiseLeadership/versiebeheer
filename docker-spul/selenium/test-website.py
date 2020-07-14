@@ -44,7 +44,7 @@ class WebsiteTest(unittest.TestCase):
         
         elem = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'p')))
         tekst = str(elem.text)
-        verwacht = "Dit niet is een simpele statische website."
+        verwacht = "Dit is een simpele statische website."
         if tekst != verwacht:
             logging.error(f"De tekst op de website: {tekst} komt niet overeen met de verwachte tekst: {verwacht}")
             raise Exception(f'De tekst op de website: {tekst} komt niet overeen met de verwachte tekst: {verwacht}')
