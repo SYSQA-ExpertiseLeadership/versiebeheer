@@ -68,7 +68,7 @@ node{
 					antwoord = sh (script: "docker ps -aqf name=${stap3}_${BUILD_NUMBER}_selenium-test_1 | xargs --no-run-if-empty docker inspect --format='{{.State.ExitCode}}'", returnStdout: true)
 					if (!antwoord.trim().equals("0")){
                         echo "Er is iets goed misgegaan"
-						echo antwoord
+						echo "Wat is dan de exit code? $(antwoord)"
 						sh "exit 1"
 					}
 				}
