@@ -48,7 +48,7 @@ class WebsiteTest(unittest.TestCase):
         if tekst != verwacht:
             logging.error(f"De tekst op de website: {tekst} komt niet overeen met de verwachte tekst: {verwacht}")
             raise Exception(f'De tekst op de website: {tekst} komt niet overeen met de verwachte tekst: {verwacht}')
-        else
+        else:
             logging.info("Alles is goed gegaan")
     
     def tearDown(self):
