@@ -62,10 +62,10 @@ node{
 				stage(stap3) {
 					sh "docker-compose -f /var/opt/test/selenium/Docker-compose-selenium.yml up --build selenium"
 					sh 'ls /var/opt/test/selenium'
-					container_id = sh (script: 'docker ps -aqf name=${stap3}_${BUILD_NUMBER}_selenium_1', returnStdout: true)
+					container_id = sh (script: 'docker ps -aqf name=selenium_selenium_1', returnStdout: true)
 					sh "docker cp selenium_selenium_1:/var/opt/test/selenium/logs /var/opt/test/selenium"
 					sh "cp /var/opt/test/selenium/logs/* /var/opt/jenkins/workspace/${env.JOB_NAME}_${BUILD_NUMBER}/docker-spul/selenium/"
-					antwoord = sh (script: "docker ps -aqf name=${stap3}_${BUILD_NUMBER}_selenium_1 | xargs --no-run-if-empty docker inspect --format='{{.State.ExitCode}}'", returnStdout: true)
+					antwoord = sh (script: "docker ps -aqf name=selenium_selenium_1 | xargs --no-run-if-empty docker inspect --format='{{.State.ExitCode}}'", returnStdout: true)
 					echo "Wat is mijn antwoord:${antwoord}!"
 					containers = sh (script: 'docker container ls -a')
 					echo 'De status is:${containers}'
@@ -85,7 +85,7 @@ node{
 				}
 				/*
 				sh 'docker system prune -f'
-				sh "docker ps -aqf name=${stap3}_${BUILD_NUMBER}_selenium_1 | xargs --no-run-if-empty docker rm -f"
+				sh "docker ps -aqf name=selenium_selenium_1 | xargs --no-run-if-empty docker rm -f"
 				sh 'docker images selenium-test-cicd-training -q | xargs --no-run-if-empty docker rmi -f'
 				*/
 				if (build_ok){
