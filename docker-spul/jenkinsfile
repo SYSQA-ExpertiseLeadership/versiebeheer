@@ -66,11 +66,8 @@ node{
 					sh "docker cp selenium_selenium_1:/var/opt/test/selenium/logs /var/opt/test/selenium"
 					sh "cp /var/opt/test/selenium/logs/* /var/opt/jenkins/workspace/${env.JOB_NAME}_${BUILD_NUMBER}/docker-spul/selenium/"
 					antwoord = sh (script: "docker ps -aqf name=selenium_selenium_1 | xargs --no-run-if-empty docker inspect --format='{{.State.ExitCode}}'", returnStdout: true)
-					echo "Wat is mijn antwoord:${antwoord}!"
 					containers = sh (script: 'docker container ls -a')
-					echo 'De status is:${containers}'
 					if (! antwoord.trim().equals("0")){
-						echo "Wat is dan de exit code:${antwoord}!"
 						sh "exit 1"
 					}
 				}
